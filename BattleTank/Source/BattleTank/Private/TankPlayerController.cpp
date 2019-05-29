@@ -38,7 +38,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 
 	if (GetSightRayHitLocation(HitLocation)) //side effect of line tracing
 	{
-	 UE_LOG(LogTemp, Warning, TEXT("Hitlocation: %s"), *HitLocation.ToString());
+		GetControlledTank()->AimAt(HitLocation);
 		// TODO Tell controlled tank to aim at this point
 	}
 }
@@ -75,7 +75,7 @@ bool ATankPlayerController::GetLookVectorHitLocation(FVector LookDirection, FVec
 			ECollisionChannel::ECC_Visibility)
 			)
 		{
-			HitResult.Location;
+			HitLocation = HitResult.Location;
 			UE_LOG(LogTemp, Warning, TEXT("2d vector drawing to 3d point at; %s"), *HitResult.ToString())
 			return true;
 	}
